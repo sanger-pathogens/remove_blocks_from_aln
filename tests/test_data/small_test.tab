@@ -1,0 +1,10 @@
+FT   CDS            10..500
+FT                   /note="this is not real"
+FT   CDS            complement(1000..2000)
+FT                   /note="is anything real"
+FT   misc_feature   5070..5095
+FT                   /note="26 bp;mummer_exact"
+FT   misc_feature   8163..8182
+FT                   /note="20 bp;mummer_exact"
+FT   misc_feature   9569..9588
+FT                   /note="20 bp;mummer_exact"

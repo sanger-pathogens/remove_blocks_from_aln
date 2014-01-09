@@ -1,0 +1,6 @@
+FT   CDS            10..20
+FT                   /note="this is not real"
+FT   CDS            complement(25..39)
+FT                   /note="is anything real"
+FT   misc_feature   50..95
+FT                   /note="26 bp;mummer_exact"
