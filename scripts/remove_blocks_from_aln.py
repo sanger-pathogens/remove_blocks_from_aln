@@ -59,16 +59,18 @@ def getOptions(arg):
 	refrem=True
 	symbol="N"
 
+	print "CWD: %s" % (os.getcwd())
+
 	for opt, arg in opts:
 		if opt in ("-h", "--help"):
 			Usage()
 			sys.exit()
 		elif opt in ("-o", "--out"):
-			outfile=arg
+			outfile=os.path.abspath(arg)
 		elif opt in ("-a", "--align"):
-			alnfile=arg
+			alnfile=os.path.abspath(arg)
 		elif opt in ("-t", "--tab"):
-			tabfile=arg
+			tabfile=os.path.abspath(arg)
 		elif opt in ("-k", "--keep"):
 			keepremove='k'
 		elif opt in ("-c", "--cut"):
@@ -81,25 +83,25 @@ def getOptions(arg):
 			symbol=arg
 
 
-		if alnfile=='' or not os.path.isfile(alnfile):
-			print 'Error: Alignment file not found!'
-			Usage()
-			sys.exit()
-		elif tabfile=='' or not os.path.isfile(tabfile):
-			print 'Error: Tab file not found!'
-			Usage()
-			sys.exit()
-		elif outfile=='':
-			print 'Error: No output file specified!'
-			Usage()
-			sys.exit()
-		symbol=symbol.upper()
-		if symbol not in ["N", "X", "?", "-"]:
-			print 'Error: Symbol must be N, X, ? or - !'
-			Usage()
-			sys.exit()
+	if alnfile=='' or not os.path.isfile(alnfile):
+		print "Error: Alignment file '%s' not found!" % alnfile
+		Usage()
+		sys.exit()
+	elif tabfile=='' or not os.path.isfile(tabfile):
+	       	print "Error: Tab file '%s' not found!" % tabfile
+		Usage()
+		sys.exit()
+	elif outfile=='':
+		print 'Error: No output file specified!'
+		Usage()
+		sys.exit()
+	symbol=symbol.upper()
+	if symbol not in ["N", "X", "?", "-"]:
+	       	print 'Error: Symbol must be N, X, ? or - !'
+		Usage()
+		sys.exit()
 
-		return alnfile, outfile, tabfile, keepremove, reference, refrem, symbol
+	return alnfile, outfile, tabfile, keepremove, reference, refrem, symbol
 		
 def get_ref_sequence( refname, alnfile ):
     refseq = ''
