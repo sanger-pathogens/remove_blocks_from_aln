@@ -59,8 +59,6 @@ def getOptions(arg):
 	refrem=True
 	symbol="N"
 
-	print "CWD: %s" % (os.getcwd())
-
 	for opt, arg in opts:
 		if opt in ("-h", "--help"):
 			Usage()
