@@ -23,17 +23,17 @@ def parse_tab( tabfile ):
     regions = []
     for line in open(tabfile, 'r'):
 	    if ".." in line:
-			regex = re.search("(\d+)\.\.(\d+)", line)
-			region = [int(regex.group(1))-1, int(regex.group(2))]
+		    regex = re.search("(\d+)\.\.(\d+)", line)
+		    region = [int(regex.group(1))-1, int(regex.group(2))]
 			
-			region.sort()
+		    region.sort()
+
+		    if "complement" in line:
+			    region.append('r') # reverse
+		    else:
+			    region.append('f') # forward
 			
-			if "complement" in line:
-				region.append('r') # reverse
-			else:
-				region.append('f') # forward
-				
-			regions.append(region)
+		    regions.append(region)
 			
     print "Found", len(regions), "regions"
     regions.sort()
@@ -80,26 +80,25 @@ def getOptions(arg):
 		elif opt in ("-s", "--symbol"):
 			symbol=arg
 
-
-		if alnfile=='' or not os.path.isfile(alnfile):
-			print 'Error: Alignment file not found!'
-			Usage()
-			sys.exit()
-		elif tabfile=='' or not os.path.isfile(tabfile):
-			print 'Error: Tab file not found!'
-			Usage()
-			sys.exit()
-		elif outfile=='':
-			print 'Error: No output file specified!'
-			Usage()
-			sys.exit()
-		symbol=symbol.upper()
-		if symbol not in ["N", "X", "?", "-"]:
-			print 'Error: Symbol must be N, X, ? or - !'
-			Usage()
-			sys.exit()
-
-		return alnfile, outfile, tabfile, keepremove, reference, refrem, symbol
+	if alnfile=='' or not os.path.isfile(alnfile):
+		print 'Error: Alignment file not found!'
+		Usage()
+		sys.exit()
+	elif tabfile=='' or not os.path.isfile(tabfile):
+	       	print 'Error: Tab file not found!'
+       		Usage()
+       		sys.exit()
+       	elif outfile=='':
+       		print 'Error: No output file specified!'
+       		Usage()
+       		sys.exit()
+       	symbol=symbol.upper()
+       	if symbol not in ["N", "X", "?", "-"]:
+       		print 'Error: Symbol must be N, X, ? or - !'
+       		Usage()
+       		sys.exit()
+       
+	return alnfile, outfile, tabfile, keepremove, reference, refrem, symbol
 		
 def get_ref_sequence( refname, alnfile ):
     refseq = ''
@@ -119,7 +118,7 @@ def get_ref_sequence( refname, alnfile ):
 
 def adjust_regions( regions, ref ):
     reftoaln={}
-    refnum=0
+    refnum=1
     for alnnum, base in enumerate(ref):
         if base != "-":
             reftoaln[refnum]=alnnum
@@ -130,7 +129,7 @@ def adjust_regions( regions, ref ):
         try:
             start = reftoaln[region[0]]
             stop = reftoaln[region[1]]
-            adj_regions.append([start, stop])
+            adj_regions.append([start, stop, region[2]])
         except KeyError:
             die("Region has locations outside of the reference sequence length: %d - %d" % (region[0], region[1]))
     
@@ -198,12 +197,12 @@ def run(alnfile, outfile, tabfile, keepremove, reference, refrem, symbol):
     
     # get regions from the tab file
     regions = parse_tab(tabfile)
-    
+
     # adjust the regions to the reference if one is given
     if reference != '':
         refseq = get_ref_sequence(reference, alnfile)
         regions = adjust_regions(regions, refseq)
-    
+
     # write new aln to file
     out = open(outfile, 'w')
     current = ""
