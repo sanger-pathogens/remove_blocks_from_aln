@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 import re, os, getopt, sys
-import pprint
-
-pp = pprint.PrettyPrinter(indent=4)
 
 def Usage():
 	print 'remove_blocks_from_aln.py Usage:'
@@ -37,6 +34,7 @@ def parse_tab( tabfile ):
 			
     print "Found", len(regions), "regions"
     regions.sort()
+
     return regions
 			
 def die( message ):
@@ -81,22 +79,14 @@ def getOptions(arg):
 			symbol=arg
 
 	if alnfile=='' or not os.path.isfile(alnfile):
-		print "Error: Alignment file '%s' not found!" % alnfile
-		Usage()
-		sys.exit()
+		die("Error: Alignment file '%s' not found" % alnfile)
 	elif tabfile=='' or not os.path.isfile(tabfile):
-	       	print "Error: Tab file '%s' not found!" % tabfile
-		Usage()
-		sys.exit()
+		die("Error: Tab file '%s' not found" % tabfile)
 	elif outfile=='':
-		print 'Error: No output file specified!'
-		Usage()
-		sys.exit()
+		die('Error: No output file specified')
 	symbol=symbol.upper()
 	if symbol not in ["N", "X", "?", "-"]:
-	       	print 'Error: Symbol must be N, X, ? or - !'
-		Usage()
-		sys.exit()
+		die('Error: Symbol must be N, X, ? or - ')
 
 	return alnfile, outfile, tabfile, keepremove, reference, refrem, symbol
 		
@@ -117,8 +107,8 @@ def get_ref_sequence( refname, alnfile ):
         die("Reference could not be found in alignment")
 
 def adjust_regions( regions, ref ):
-    reftoaln={}
-    refnum=1
+    reftoaln = {}
+    refnum = 0
     for alnnum, base in enumerate(ref):
         if base != "-":
             reftoaln[refnum]=alnnum
@@ -201,7 +191,8 @@ def run(alnfile, outfile, tabfile, keepremove, reference, refrem, symbol):
     # adjust the regions to the reference if one is given
     if reference != '':
         refseq = get_ref_sequence(reference, alnfile)
-        regions = adjust_regions(regions, refseq)
+        if "-" in refseq:
+            regions = adjust_regions(regions, refseq)
 
     # write new aln to file
     out = open(outfile, 'w')
