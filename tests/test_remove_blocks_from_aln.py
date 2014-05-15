@@ -18,10 +18,11 @@ def test_get_ref():
     assert got == exp
     
 def test_adjusting_regions():
-    exp = [[1,7], [11,21]]
+    exp = [[1,7, 'f'], [11,21, 'r']]
     ref = "AAA----TT--GGGGG-----CC"
-    regions = [[1,3], [5,10]]
+    regions = [[1,3, 'f'], [5,10, 'r']]
     got = adjust_regions( regions, ref )
+    print got
     assert got == exp
     
 def test_masking():
@@ -55,7 +56,7 @@ def test_validation():
     
 def test_run1():
     alnfile = "tests/test_data/tiny_test.aln"
-    tabfile = "tests/test_data/tiny_test.tab"
+    tabfile = "tests/test_data/tiny_test.2.tab"
     outfile = "test_run1.aln"
     keepremove = 'r'
     reference = ''
