@@ -6,14 +6,15 @@ def Usage():
 	print 'Removes regions from a fasta alignment based on a tab file input. You can choose to remove or keep the regions in the tab file'
 	print 'remove_blocks_from_aln.py [options]'
 	print 'Options:'
-	print '-a <file name>\talignment file name'
-	print '-k\t\tkeep regions in tab file (default is to remove them)'
-	print '-o <file name>\toutput file name'
-	print '-t <file name>\ttab file name (containing regions to keep/remove)'
-	print '-r <name>\treference name (optional, but required if there are gaps in the reference sequence relative to the tab file)'
-	print '-R\t\tDo not remove blocks from reference sequence (default is to remove from all sequences)'
-	print '-s <char>\tSymbol to use for removed regions (default = N)'
-	print '-h\t\tshow this help'
+	print '-a|align <file name>\talignment file name'
+	print '-o|out <file name>\toutput file name'
+	print '-t|tab <file name>\ttab file name (containing regions to keep/remove)'
+	print '-c|cut\t\t\toutput alignment with regions cut out (default is to mask them)'
+	print '-k|keep\t\t\toutput alignment containing only regions defined in tab file'
+	print '-r|reference <name>\treference name (optional, but required if there are gaps in the reference sequence relative to the tab file)'
+	print '-R|refrem\t\tDo not remove blocks from reference sequence (default is to remove from all sequences)'
+	print '-s|symbol <char>\tSymbol to use for removed regions (default = N)'
+	print '-h|help\t\t\tshow this help'
 
 # Define functions
 def parse_tab( tabfile ):
