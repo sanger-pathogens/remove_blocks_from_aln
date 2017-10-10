@@ -2,6 +2,15 @@ remove_blocks_from_aln
 ======================
 remove_blocks_from_aln is a tool to mask, remove or keep regions in an alignment. The regions are defined in an EMBL style tab-delimited file.
 
+###Installation
+Download the latest release from this github repository, or clone the repository. Then run the tests:
+
+    python setup.py test
+    
+If the tests all pass, install:
+
+    python setup.py install
+
 ###Usage
 remove_block_from_aln.py [options]
 
