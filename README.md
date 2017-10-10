@@ -36,3 +36,4 @@ Tab file should emulate the EMBL file format, using only feature (FT) lines to d
 	
 Note: while complemented regions can be handled, joins cannot and should be split into separate regions.
 
+Build status: [![Build Status](https://travis-ci.org/sanger-pathogens/remove_blocks_from_aln.svg?branch=master)](https://travis-ci.org/sanger-pathogens/remove_blocks_from_aln)
