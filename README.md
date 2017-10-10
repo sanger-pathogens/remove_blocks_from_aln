@@ -3,6 +3,7 @@ remove_blocks_from_aln
 remove_blocks_from_aln is a tool to mask, remove or keep regions in an alignment. The regions are defined in an EMBL style tab-delimited file.
 
 ###Installation
+
 Download the latest release from this github repository, or clone the repository. Then run the tests:
 
     python setup.py test
@@ -12,6 +13,7 @@ If the tests all pass, install:
     python setup.py install
 
 ###Usage
+
 remove_block_from_aln.py [options]
 
 	-a <file name>     alignment file name
@@ -25,7 +27,9 @@ remove_block_from_aln.py [options]
 	-h                 Show help menu
 
 ###Inputs
+
 ####Alignment file
+
 Alignment file must be in fasta format:
 
 	>sequence1
@@ -34,6 +38,7 @@ Alignment file must be in fasta format:
 	TTTTGGGGAAAACCCC
 
 ####Tab file
+
 Tab file should emulate the EMBL file format, using only feature (FT) lines to define your regions:
 
 	FT   misc_feature   5070..5095
