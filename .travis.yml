@@ -1,6 +1,11 @@
-language: python
-python:
-  - "3.4"
-sudo: false
-script:
-  - "python setup.py test"
+{
+  "language": "python",
+  "python": "3.4",
+  "sudo": false,
+  "script": [
+    "python setup.py test"
+  ],
+  "group": "stable",
+  "dist": "precise",
+  "os": "linux"
+}
