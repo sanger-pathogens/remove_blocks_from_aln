@@ -3,6 +3,7 @@ mask, remove or keep regions in an alignment
 
 [![Build Status](https://travis-ci.org/sanger-pathogens/remove_blocks_from_aln.svg?branch=master)](https://travis-ci.org/sanger-pathogens/remove_blocks_from_aln)   
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/sanger-pathogens/remove_blocks_from_aln/blob/master/LICENSE)  
+[![Docker Build Status](https://img.shields.io/docker/cloud/build/sangerpathogens/remove_blocks_from_aln.svg)](https://hub.docker.com/r/sangerpathogens/remove_blocks_from_aln)   
 
 ## Contents
   * [Introduction](#introduction)

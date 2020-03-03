@@ -1,10 +1,9 @@
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
-import sys, os
+import sys, os, glob
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
 
 class PyTest(TestCommand):
     def finalize_options(self):
@@ -22,8 +21,9 @@ setup(
     author = "Carla Cummins",
     author_email = "cc21@sanger.ac.uk",
     long_description = read("README.md"),
-    licence = "GPL",
-    url = "",
+    license = "GPLv3",
+    url = "https://github.com/sanger-pathogens/remove_blocks_from_aln",
+    scripts = glob.glob('scripts/*'),
     packages = find_packages(),
     cmdclass = {'test': PyTest}
-    )
+)
