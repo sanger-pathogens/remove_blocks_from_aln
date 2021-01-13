@@ -23,6 +23,11 @@ remove_blocks_from_aln is a tool to mask, remove or keep regions in an alignment
 Details for installing remove_blocks_from_aln are provided below. If you encounter an issue when installing remove_blocks_from_aln please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/sanger-pathogens/remove_blocks_from_aln/issues) or email us at path-help@sanger.ac.uk.
 
 ### From source
+This installation requires Python 2.7, so ensure that you have created a suitable environment that will use the Python 2 interpreter before running any python commands below. For instance, you can create such an environment with `conda`:
+
+    conda create -n my_env python=2.7
+    conda activate my_env
+
 Download the latest release from this github repository, or clone the repository. Then run the tests:
 
     python setup.py test
